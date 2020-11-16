@@ -184,3 +184,61 @@ const stop = chalk.red;
 
 console.log(stop('On your mark'), slow('Get set'), go('Go!'))
 ```
+# Hello Express
+
+First we make our repository, `fork`, and `clone`. Then we `cd` into our directory and initialize our Node project
+```text
+npm init -y
+```
+Here, we will be installing express locally
+```text
+npm i express
+```
+Check to make sure we have (create one if we don't yet) an `index.js` and `.gitignore`. Lets start coding
+```text
+code .
+```
+First, we will import our Express module
+```js
+const express = require('express');
+const app = express();
+```
+Now we will create our express app
+```js
+app.get('/', function(req, res) {
+    res.send('Hello!');
+});
+
+app.listen(8000);
+```
+The app will "listen" on our localhost, port 8000 for requests and respond with 'Hello!'
+
+
+# Hello Express - Continued
+
+Continuing our previous work with express. We learn to use routes and send different types of responses. Let's make a directory `views` and an `index.html`, `about.html`, and `blog.html`
+
+
+```js
+app.get('/', function(req, res) {
+    res.sendFile(__dirname+'/views/index.html');
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(__dirname+'/views/about.html');
+});
+
+app.get('/blog', (req, res) => {
+    res.sendFile(__dirname+'/views/blog.html');
+});
+```
+With the above code. We can send back HTML code when there are requests to those routes.
+
+Next, we learn to use a template engine, EJS. We just need to install using:
+```text
+npm install ejs
+```
+Now, we go back into our `index.js` and add the following to above our code:
+```js
+app.set('view engine`, `ejs`);
+```
